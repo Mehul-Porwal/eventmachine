@@ -341,6 +341,7 @@ module EventMachine
       if tls_parms[:sni_hostname]
         ssl_io.hostname = tls_parms[:sni_hostname] if ssl_io.respond_to?(:hostname=)
       end
+      p 'PRINTING hostname'
       p ssl_io.hostname
       begin
         selectable.is_server ? ssl_io.accept_nonblock : ssl_io.connect_nonblock
