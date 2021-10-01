@@ -336,9 +336,12 @@ module EventMachine
       end
       ssl_io = OpenSSL::SSL::SSLSocket.new(selectable, ctx)
       ssl_io.sync_close = true
+      p 'PRINTING ALL PARAMS HERE'
+      p tls_parms
       if tls_parms[:sni_hostname]
         ssl_io.hostname = tls_parms[:sni_hostname] if ssl_io.respond_to?(:hostname=)
       end
+      p ssl_io.hostname
       begin
         selectable.is_server ? ssl_io.accept_nonblock : ssl_io.connect_nonblock
       rescue; end
